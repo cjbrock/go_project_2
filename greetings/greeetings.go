@@ -16,6 +16,18 @@ func Hello(name string) (string, error) {
 	return message, nil
 }
 
+func Hellos(names []string) (map[string]string, error) {
+	messes := make(map[string]string)
+	for _, name := range names {
+		mess, err := Hello(name)
+		if err != nil {
+			return nil, err
+		}
+		messes[name] = mess
+	}
+	return messes, nil
+}
+
 func init() {
 	rand.Seed(time.Now().UnixNano())
 }
